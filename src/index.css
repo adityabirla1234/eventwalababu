@@ -1,0 +1,424 @@
+@import "tailwindcss";
+
+/* ============================================================
+   EventWalaBabu — Design Tokens
+   Source: UI/UX Pro Max database
+   - Product Type #33 "Luxury/Premium Brand" (Black + Gold + Cream)
+   - Style #14 "Liquid Glass" + #3 "Glassmorphism" accents
+   - Typography #1 "Classic Elegant" (Playfair Display / Inter)
+   ============================================================ */
+
+@theme {
+  /* ---- Fonts ---- */
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Brand color scale: Onyx (near-black, warm) ---- */
+  --color-onyx-50: #f8f7f6;
+  --color-onyx-100: #efece9;
+  --color-onyx-200: #d6d3d1;
+  --color-onyx-300: #b3aca7;
+  --color-onyx-400: #85786f;
+  --color-onyx-500: #5c5049;
+  --color-onyx-600: #44403c;
+  --color-onyx-700: #322c28;
+  --color-onyx-800: #211d1a;
+  --color-onyx-900: #1c1917;
+  --color-onyx-950: #0c0a09;
+
+  /* ---- Brand color scale: Gold (accent) ---- */
+  --color-gold-50: #fdf9ec;
+  --color-gold-100: #faf0cc;
+  --color-gold-200: #f3dd94;
+  --color-gold-300: #ecc65c;
+  --color-gold-400: #e2af38;
+  --color-gold-500: #cc9420;
+  --color-gold-600: #a16207;
+  --color-gold-700: #7c4c0e;
+  --color-gold-800: #653d12;
+  --color-gold-900: #543314;
+  --color-gold-950: #301a08;
+
+  /* ---- Cream / warm neutrals ---- */
+  --color-cream-50: #fefdfb;
+  --color-cream-100: #fbf9f4;
+  --color-cream-200: #f5f0e6;
+  --color-cream-300: #ece3d1;
+
+  /* ---- Semantic tokens (light theme default) ---- */
+  --color-background: var(--color-cream-50);
+  --color-foreground: var(--color-onyx-950);
+
+  --color-primary: var(--color-onyx-900);
+  --color-primary-foreground: var(--color-cream-50);
+
+  --color-secondary: var(--color-onyx-600);
+  --color-secondary-foreground: #ffffff;
+
+  --color-accent: var(--color-gold-600);
+  --color-accent-foreground: #ffffff;
+  --color-accent-soft: var(--color-gold-100);
+
+  --color-card: #ffffff;
+  --color-card-foreground: var(--color-onyx-950);
+
+  --color-muted: var(--color-cream-200);
+  --color-muted-foreground: var(--color-onyx-500);
+
+  --color-border: var(--color-onyx-200);
+  --color-ring: var(--color-onyx-900);
+
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+
+  /* ---- Permanently-dark inverse surface (footer, CTA bands) ----
+     Unlike --color-primary, this does NOT flip in .dark — it's for
+     sections designed to always read as a dark "luxury" band
+     regardless of site theme (e.g. Footer, PageCTA, LuxuryCTA). */
+  --color-surface-inverse: var(--color-onyx-950);
+  --color-surface-inverse-foreground: var(--color-cream-50);
+
+  /* ---- Spacing rhythm (8pt system, marketing/spacious) ----
+     NOTE: these are reference tokens only (not applied as utility
+     classes anywhere in the codebase). They are intentionally NOT
+     named --spacing-xs/sm/md/lg/xl/2xl/3xl — Tailwind v4 resolves
+     max-w-*, w-*, h-*, p-*, m-*, gap-* etc. through that exact
+     --spacing-<key> namespace, so reusing those key names silently
+     overrides Tailwind's built-in size scale (e.g. max-w-lg would
+     drop from 32rem to 2.5rem site-wide). Keep this prefix unique. */
+  --space-rhythm-xs: 0.5rem;
+  --space-rhythm-sm: 1rem;
+  --space-rhythm-md: 1.5rem;
+  --space-rhythm-lg: 2.5rem;
+  --space-rhythm-xl: 4rem;
+  --space-rhythm-2xl: 6rem;
+  --space-rhythm-3xl: 8rem;
+
+  /* ---- Radius ---- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.25rem;
+
+  /* ---- Motion (spring-adjacent easing tokens) ---- */
+  --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+
+  /* ---- Container widths ---- */
+  --container-content: 80rem;
+
+  /* ---- Z-index scale ---- */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 40;
+  --z-modal: 100;
+  --z-toast: 1000;
+}
+
+/* Dark theme — same brand, inverted surfaces, gold brightened for contrast */
+.dark {
+  --color-background: var(--color-onyx-950);
+  --color-foreground: var(--color-cream-100);
+
+  --color-primary: var(--color-cream-50);
+  --color-primary-foreground: var(--color-onyx-950);
+
+  --color-secondary: var(--color-onyx-300);
+  --color-secondary-foreground: var(--color-onyx-950);
+
+  --color-accent: var(--color-gold-400);
+  --color-accent-foreground: var(--color-onyx-950);
+  --color-accent-soft: rgb(226 175 56 / 12%);
+
+  --color-card: var(--color-onyx-800);
+  --color-card-foreground: var(--color-cream-100);
+
+  --color-muted: var(--color-onyx-700);
+  --color-muted-foreground: var(--color-onyx-300);
+
+  --color-border: rgb(255 255 255 / 12%);
+  --color-ring: var(--color-gold-400);
+}
+
+/* ============================================================
+   Base layer
+   ============================================================ */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /*
+     * NOTE: deliberately no `overflow-x: hidden` here. `overflow` (including
+     * overflow-x) on html/body — or on any ancestor of a `position: sticky`
+     * element — breaks that element's stickiness, which is what happened to
+     * the homepage's pinned Portfolio gallery (AnimatedGallery's
+     * ContainerSticky) when this was added as a document-level fix for
+     * off-screen card animations. The phantom-horizontal-scroll problem
+     * those animations caused ("hamburger icon shifts") is fixed at its
+     * actual source instead: `overflow-x-hidden` scoped locally to the grid
+     * wrappers in MissionVision.tsx and ServiceCards.tsx, right around the
+     * cards that slide in from an off-screen x-offset. That clips the same
+     * phantom overflow without ever wrapping the rest of the page.
+     */
+    transition: background-color var(--duration-base) var(--ease-out-soft),
+      color var(--duration-base) var(--ease-out-soft);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    color: var(--color-foreground);
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  /* Respect reduced motion system-wide */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ============================================================
+   Utility layer — reusable premium primitives
+   ============================================================ */
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(120deg, var(--color-gold-600), var(--color-gold-300) 50%, var(--color-gold-600));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  /*
+   * Animated gradient "shimmer" / aurora text — a warm gold-to-cream
+   * gradient that slowly drifts across the glyphs on a loop, rather than
+   * sitting static like `.text-gradient-gold`. Reserved for short,
+   * prominent headline text (not body copy — a moving gradient hurts
+   * paragraph readability). Respects prefers-reduced-motion via the
+   * global rule above (animation-duration forced to ~0).
+   */
+  .text-aurora {
+    background-image: linear-gradient(
+      100deg,
+      var(--color-gold-600) 0%,
+      var(--color-gold-200) 22%,
+      var(--color-cream-50) 38%,
+      var(--color-gold-300) 55%,
+      var(--color-gold-600) 70%,
+      var(--color-gold-200) 88%,
+      var(--color-gold-600) 100%
+    );
+    background-size: 250% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: aurora-shimmer 7s linear infinite;
+  }
+
+  @keyframes aurora-shimmer {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: -250% 50%;
+    }
+  }
+
+  .noise-overlay {
+    position: relative;
+  }
+
+  .noise-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /*
+   * NOTE: this class is applied to text inside Framer Motion `motion.*`
+   * elements throughout the site (via the `<Reveal>` wrapper). Framer Motion
+   * leaves a persistent inline `transform` on those elements even after the
+   * entrance animation finishes, and combining that with `text-wrap: balance`
+   * makes some Chromium builds mis-run the balancing algorithm — the text
+   * collapses to one word per line instead of wrapping normally. `pretty`
+   * uses a lighter, single-pass heuristic (just avoids a lonely last word)
+   * that doesn't trigger the bug, degrades safely on browsers that don't
+   * support it yet, and is the correct choice for body copy anyway (`balance`
+   * is spec-recommended for short headings only, not multi-sentence text).
+   */
+  .balance {
+    text-wrap: pretty;
+  }
+
+  /* ---- Homepage extensions (additive — new utilities only) ---- */
+
+  /* Diagonal light sweep for premium hover states (buttons, index rows, tiles). */
+  .shine {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .shine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      115deg,
+      transparent 20%,
+      rgb(255 255 255 / 16%) 48%,
+      transparent 76%
+    );
+    transform: translateX(-120%);
+    pointer-events: none;
+  }
+
+  .shine:hover::after {
+    transform: translateX(120%);
+    transition: transform 900ms var(--ease-luxe);
+  }
+
+  /* Edge-fade mask for marquee / horizontally scrolling strips. */
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+  }
+
+  /* Continuous horizontal scroll for logo/marquee strips. */
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee-scroll 34s linear infinite;
+  }
+
+  /* Slow ambient drift for hero background fields. */
+  @keyframes drift-slow {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(2%, -3%, 0) scale(1.04);
+    }
+  }
+
+  .animate-drift {
+    animation: drift-slow 18s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-drift {
+      animation: none;
+    }
+    .shine::after {
+      display: none;
+    }
+  }
+
+  /* Hairline gold rule used as a structural divider (replaces boxed cards). */
+  .rule-gold {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-accent) 15%,
+      var(--color-accent) 85%,
+      transparent
+    );
+    height: 1px;
+  }
+
+  /* Hides the scrollbar on touch carousels (e.g. mobile service cards) while
+     keeping the element natively scrollable — swipe/drag still works fully,
+     this only affects the visual scrollbar chrome. */
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Blinking caret trailing the Typewriter component's reveal. */
+  .typewriter-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 0.85em;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    background: currentColor;
+    animation: typewriter-blink 0.8s step-end infinite;
+  }
+
+  @keyframes typewriter-blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+}

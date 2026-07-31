@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <script>
+      // Captured as early as possible so the preloader's minimum-visible
+      // duration (see src/hooks/use-app-preloader.ts) is measured from true
+      // page-load start, not from whenever React happens to mount.
+      window.__appLoadStart = Date.now()
+    </script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Matches the dark surface token in index.css so the browser chrome never clashes with the page -->
+    <meta name="theme-color" content="#0c0a09" />
+
+    <meta name="description" content="EventWalaBabu is the leading wedding planner in Sanawad, serving Barwaha, Khargone and the wider Nimad region — luxury & destination weddings, stage decoration, sangeet choreography, fireworks and corporate events." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.eventwalababu.in/" />
+    <meta name="geo.region" content="IN-MP" />
+    <meta name="geo.placename" content="Sanawad, Madhya Pradesh" />
+
+    <!-- Open Graph / Twitter fallback (react-helmet-async overrides these per-route once the app hydrates) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="EventWalaBabu" />
+    <meta property="og:title" content="EventWalaBabu | Best Wedding Planner in Sanawad, Barwaha &amp; Nimad" />
+    <meta property="og:description" content="EventWalaBabu — luxury weddings, destination weddings, stage & venue decoration, sangeet choreography, fireworks and corporate events across Sanawad, Barwaha and the Nimad region." />
+    <meta property="og:url" content="https://www.eventwalababu.in/" />
+    <meta property="og:image" content="https://www.eventwalababu.in/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_IN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@eventwalababu" />
+    <meta name="twitter:title" content="EventWalaBabu | Best Wedding Planner in Sanawad, Barwaha &amp; Nimad" />
+    <meta name="twitter:description" content="Luxury weddings, destination weddings, stage & venue decoration, fireworks and corporate events — serving Sanawad, Barwaha and the Nimad region." />
+    <meta name="twitter:image" content="https://www.eventwalababu.in/og-image.jpg" />
+
+    <!-- Preconnect for font performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      Preloader CSS lives inline (not in index.css) so it can render before
+      any external stylesheet or JS has loaded — it's the very first thing
+      painted, covering the initial JS-download/parse/mount window with a
+      branded moment instead of a blank white flash.
+    -->
+    <style>
+      #app-preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 2147483647;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0c0a09;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+      }
+      #app-preloader img {
+        width: min(220px, 55vw);
+        height: auto;
+        animation: app-preloader-pulse 1.8s ease-in-out infinite;
+      }
+      #app-preloader.is-hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      @keyframes app-preloader-pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.72; transform: scale(0.96); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #app-preloader img { animation: none; }
+      }
+    </style>
+
+    <title>EventWalaBabu | Best Wedding Planner in Sanawad, Barwaha &amp; Nimad</title>
+  </head>
+  <body>
+    <div id="app-preloader" aria-hidden="true">
+      <img src="/preloader-logo.png" alt="" width="520" height="271" />
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
