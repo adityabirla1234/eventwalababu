@@ -13,8 +13,8 @@ export const BRAND_NAME = 'EventWalaBabu'
 export const BRAND_TAGLINE = 'Celebrations, Curated to Perfection'
 
 export const CONTACT = {
-  phone: '+91 87709 52148',
-  whatsapp: '+91 87709 52148',
+  phone: '+91 77470 83488',
+  whatsapp: '+91 77470 83488',
   whatsappDefaultMessage: "Hi EventWalaBabu, I'd like to plan an event with you.",
   email: 'eventwalababu23@gmail.com',
   instagram: 'https://instagram.com/eventwalababu',
