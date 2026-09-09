@@ -46,7 +46,7 @@ export default function Contact() {
   return (
     <>
       <Seo
-        title="Contact Us — Wedding Planner in Sanawad"
+        title="Contact Us — Wedding Planner in Indore,Sanawad and Pan India"
         description="Reach EventWalaBabu directly by phone, WhatsApp or email, or visit our Sanawad studio serving Barwaha, Khargone and the Nimad region. A lead planner replies within 24 hours."
         path="/contact"
       />
