@@ -16,7 +16,7 @@ const MotionLink = motion(Link)
 const MARGIN_NOTES = [
   { label: 'Founded', value: '2019, Sanawad' },
   { label: 'Studio', value: 'Design & Production' },
-  { label: 'Serving', value: 'Sanawad, Barwaha & Nimad' },
+  { label: 'Serving', value: 'Pan India' },
 ]
 
 export function AboutPreview() {
